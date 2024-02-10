@@ -30,3 +30,10 @@ jobs:
 
       - name: Run formating
         run: test -z $(go fmt ./...) && echo $?
+
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+
+      - name: Run linting
+        run: staticcheck ./...
+
