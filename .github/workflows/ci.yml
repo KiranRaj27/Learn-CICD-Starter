@@ -20,6 +20,7 @@ jobs:
 
       - name: Run unit tests
         run: go test ./... --cover
+
   style:
     name: Style
     runs-on: ubuntu-latest
@@ -28,5 +29,11 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Run formating
-        run: test -z $(go fmt ./...) && echo $?
+      - name: Run formatting
+        run: test -z "$(go fmt ./...)" && echo $?
+
+      - name: Install staticcheck
+        run: go install honnef.co/go/tools/cmd/staticcheck@latest
+
+      - name: Run linting
+        run: $(go env GOPATH)/bin/staticcheck ./...
