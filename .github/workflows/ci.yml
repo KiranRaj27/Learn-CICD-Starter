@@ -32,7 +32,10 @@ jobs:
         run: test -z $(go fmt ./...) && echo $?
 
       - name: Install staticcheck
-        run: go get honnef.co/go/tools/cmd/staticcheck@latest
+        run: go get -u honnef.co/go/tools/cmd/staticcheck
+
+      - name: Add staticcheck to PATH
+        run: echo "::add-path::$(go env GOPATH)/bin"
 
       - name: Run linting
         run: staticcheck ./...
