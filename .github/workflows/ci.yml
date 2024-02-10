@@ -35,8 +35,8 @@ jobs:
       - name: Install staticcheck
         run: go install honnef.co/go/tools/cmd/staticcheck@latest
 
-      - name: Set PATH for staticcheck
-        run: echo "::add-path::$GOPATH/bin"
+      - name: Set up environment file
+        run: echo "PATH=\$PATH:$GOPATH/bin" >> $GITHUB_ENV
 
       - name: Run linting
         run: staticcheck ./...
