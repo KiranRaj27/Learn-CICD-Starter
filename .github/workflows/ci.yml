@@ -34,9 +34,6 @@ jobs:
       - name: Install staticcheck
         run: go get -u honnef.co/go/tools/cmd/staticcheck
 
-      - name: Add staticcheck to PATH
-        run: echo "::add-path::$(go env GOPATH)/bin"
-
       - name: Run linting
         run: staticcheck ./...
 
